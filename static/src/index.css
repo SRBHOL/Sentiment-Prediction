@@ -1,0 +1,169 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Fredoka+One&display=swap');
+@import 'tailwindcss';
+
+@theme inline {
+  --font-display: 'Fredoka One', cursive;
+  --font-body: 'Nunito', sans-serif;
+}
+
+* {
+  font-family: var(--font-body);
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+}
+
+/* Emotion background transitions */
+.emotion-bg {
+  transition: background 1.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Floating blobs */
+@keyframes blob1 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  33% { transform: translate(30px, -40px) scale(1.1); }
+  66% { transform: translate(-20px, 20px) scale(0.95); }
+}
+@keyframes blob2 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  33% { transform: translate(-40px, 30px) scale(0.9); }
+  66% { transform: translate(20px, -20px) scale(1.1); }
+}
+@keyframes blob3 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(25px, 25px) scale(1.05); }
+}
+
+.blob1 { animation: blob1 8s ease-in-out infinite; }
+.blob2 { animation: blob2 10s ease-in-out infinite; }
+.blob3 { animation: blob3 7s ease-in-out infinite; }
+
+/* Character bounce */
+@keyframes characterBounce {
+  0%, 100% { transform: translateY(0) scale(1); }
+  25% { transform: translateY(-12px) scale(1.05); }
+  50% { transform: translateY(-6px) scale(1.02); }
+  75% { transform: translateY(-14px) scale(1.06); }
+}
+
+@keyframes characterShake {
+  0%, 100% { transform: rotate(0deg); }
+  10% { transform: rotate(-8deg); }
+  20% { transform: rotate(8deg); }
+  30% { transform: rotate(-6deg); }
+  40% { transform: rotate(6deg); }
+  50% { transform: rotate(-4deg); }
+  60% { transform: rotate(4deg); }
+  70% { transform: rotate(-2deg); }
+  80% { transform: rotate(2deg); }
+  90% { transform: rotate(0deg); }
+}
+
+@keyframes characterFloat {
+  0%, 100% { transform: translateY(0) rotate(-3deg); }
+  50% { transform: translateY(-18px) rotate(3deg); }
+}
+
+@keyframes characterSpin {
+  0% { transform: rotate(0deg) scale(1); }
+  25% { transform: rotate(90deg) scale(1.1); }
+  50% { transform: rotate(180deg) scale(1); }
+  75% { transform: rotate(270deg) scale(1.1); }
+  100% { transform: rotate(360deg) scale(1); }
+}
+
+@keyframes characterPulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.15); }
+}
+
+@keyframes characterWiggle {
+  0%, 100% { transform: skewX(0deg); }
+  25% { transform: skewX(-10deg); }
+  75% { transform: skewX(10deg); }
+}
+
+.anim-bounce { animation: characterBounce 1.2s ease-in-out infinite; }
+.anim-shake { animation: characterShake 0.6s ease-in-out infinite; }
+.anim-float { animation: characterFloat 2.5s ease-in-out infinite; }
+.anim-spin { animation: characterSpin 2s linear infinite; }
+.anim-pulse { animation: characterPulse 1s ease-in-out infinite; }
+.anim-wiggle { animation: characterWiggle 0.8s ease-in-out infinite; }
+
+/* Result card entry */
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(40px) scale(0.9); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+@keyframes popIn {
+  0% { opacity: 0; transform: scale(0.5) rotate(-10deg); }
+  70% { transform: scale(1.1) rotate(3deg); }
+  100% { opacity: 1; transform: scale(1) rotate(0deg); }
+}
+
+.slide-up { animation: slideUp 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) forwards; }
+.pop-in { animation: popIn 0.7s cubic-bezier(0.34, 1.56, 0.64, 1) forwards; }
+
+/* Stars/particles */
+@keyframes starFloat {
+  0% { opacity: 0; transform: translateY(0) scale(0); }
+  20% { opacity: 1; transform: translateY(-20px) scale(1); }
+  100% { opacity: 0; transform: translateY(-80px) scale(0.5); }
+}
+
+.star-particle {
+  animation: starFloat 1.5s ease-out forwards;
+  position: absolute;
+  pointer-events: none;
+}
+
+/* Thinking dots */
+@keyframes dot1 { 0%, 80%, 100% { transform: scale(0.7); opacity: 0.4; } 40% { transform: scale(1.2); opacity: 1; } }
+@keyframes dot2 { 0%, 80%, 100% { transform: scale(0.7); opacity: 0.4; } 40% { transform: scale(1.2); opacity: 1; } }
+@keyframes dot3 { 0%, 80%, 100% { transform: scale(0.7); opacity: 0.4; } 40% { transform: scale(1.2); opacity: 1; } }
+
+.dot1 { animation: dot1 1.2s ease-in-out infinite; }
+.dot2 { animation: dot2 1.2s ease-in-out infinite 0.2s; }
+.dot3 { animation: dot3 1.2s ease-in-out infinite 0.4s; }
+
+/* Input glow */
+.input-field {
+  transition: box-shadow 0.3s ease, border-color 0.3s ease;
+}
+.input-field:focus {
+  outline: none;
+}
+
+/* Emotion label bounce */
+@keyframes labelPop {
+  0% { transform: scale(0) rotate(-15deg); }
+  60% { transform: scale(1.2) rotate(5deg); }
+  100% { transform: scale(1) rotate(0deg); }
+}
+.label-pop { animation: labelPop 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) forwards; }
+
+/* Scrollbar hide */
+::-webkit-scrollbar { display: none; }
+
+/* Memphis geometric decorations */
+@keyframes rotateGeo {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+@keyframes rotateGeoReverse {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(-360deg); }
+}
+.geo-rotate { animation: rotateGeo 20s linear infinite; }
+.geo-rotate-rev { animation: rotateGeoReverse 15s linear infinite; }
+
+/* Confidence bar fill */
+@keyframes fillBar {
+  from { width: 0%; }
+  to { width: var(--target-width); }
+}
+.fill-bar { animation: fillBar 1s cubic-bezier(0.4, 0, 0.2, 1) forwards; }
