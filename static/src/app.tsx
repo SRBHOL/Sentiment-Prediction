@@ -6,9 +6,7 @@ type Emotion =
   | "joy"
   | "sadness"
   | "fear"
-  | "surprise"
-  | "disgust"
-  | "neutral";
+  | "surprise";
 
 interface EmotionConfig {
   label: string;
@@ -116,36 +114,6 @@ const EMOTIONS: Record<Emotion, EmotionConfig> = {
     animation: "anim-spin",
     description: "Wait... WHAT?! No way!",
     particles: ["🤯", "💥", "❓", "⭐", "🌀"],
-  },
-  disgust: {
-    label: "Disgust",
-    emoji: "🤢",
-    character: "🤮",
-    bg: "linear-gradient(135deg, #66bb6a 0%, #a5d6a7 50%, #1b5e20 100%)",
-    blobA: "#81c784",
-    blobB: "#c8e6c9",
-    blobC: "#2e7d32",
-    cardBg: "rgba(255,255,255,0.88)",
-    accent: "#388e3c",
-    textColor: "#1b5e20",
-    animation: "anim-wiggle",
-    description: "Eww, gross!",
-    particles: ["🤢", "💚", "🤮", "🌿", "😖"],
-  },
-  neutral: {
-    label: "Neutral",
-    emoji: "😐",
-    character: "🙂",
-    bg: "linear-gradient(135deg, #78909c 0%, #b0bec5 50%, #455a64 100%)",
-    blobA: "#90a4ae",
-    blobB: "#cfd8dc",
-    blobC: "#546e7a",
-    cardBg: "rgba(255,255,255,0.88)",
-    accent: "#546e7a",
-    textColor: "#263238",
-    animation: "anim-float",
-    description: "Just a regular day, huh.",
-    particles: ["💭", "📝", "🌥️", "⚖️", "🔘"],
   },
 };
 

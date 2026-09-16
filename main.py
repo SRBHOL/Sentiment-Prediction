@@ -10,7 +10,9 @@ from pydantic import BaseModel, Field
 from keras.models import load_model
 import numpy as np
 import pickle
+import os
 import re
+import socket
 
 
 
@@ -189,3 +191,33 @@ def predict_emotion(text_input: TextInput):
         confidence = float(probabilites[top_emotion_index]), 
         all_probabilites = all_probabilites
     )
+
+
+def get_free_port(start_port: int = 8000, end_port: int = 9000) -> int:
+    for port in range(start_port, end_port + 1):
+        with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as sock:
+            sock.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
+            try:
+                sock.bind(("0.0.0.0", port))
+                return port
+            except OSError:
+                continue
+    raise RuntimeError(f"No free port found between {start_port} and {end_port}.")
+
+
+if __name__ == "__main__":
+    import uvicorn
+    preferred_port = int(os.getenv("PORT", "8000"))
+    port = preferred_port
+
+    if preferred_port == 0:
+        port = get_free_port()
+    else:
+        with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as sock:
+            try:
+                sock.bind(("0.0.0.0", preferred_port))
+            except OSError:
+                port = get_free_port()
+
+    print(f"Starting server on port {port}")
+    uvicorn.run("main:app", host="0.0.0.0", port=port, reload=False)
